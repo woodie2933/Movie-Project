@@ -1,6 +1,7 @@
 import env from "./env.js";
 
-const getMovies = async function () {
+// Movie API
+const fetchMovies = async function () {
   const options = {
     method: "GET",
     headers: {
@@ -25,13 +26,29 @@ const getMovies = async function () {
 };
 
 const renderMovie = function (data) {
-  const movie = document.getElementById("movies");
+  const movie = document.getElementById("top_rated");
   data.forEach((item) => {
-    movie.innerHTML += `<h3 class>${item.title}</h3>
-<p>${item.vote_average}</p>
-<img class="img" src ='https://image.tmdb.org/t/p/w300/${item.poster_path}'>`;
+    movie.innerHTML += `
+      <div class = "card">
+        <h3>${item.title}</h3>
+        <p>${item.vote_average}</p>
+        <img class="img" src ='https://image.tmdb.org/t/p/w300/${item.backdrop_path}'>
+      </div>`;
   });
   console.log(data);
 };
 
-getMovies();
+fetchMovies();
+
+// random
+const randomMovie = function (data) {
+  const randomIndex = Math.random(Math.floor() * 20);
+  const headerImg = document.querySelector(".header_contents");
+  const img = data[randomIndex].backdrop_path;
+
+  headerImg.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300/${img}')`;
+
+  console.log(data);
+};
+
+randomMovie(fetchMovies());

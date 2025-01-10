@@ -1,3 +1,18 @@
-.img {
+#top_rated {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+  gap: 80px 40px;
+  justify-content: center;
+  justify-items: start;
+}
+
+.card {
   width: 200px;
+  height: 200px;
+}
+
+.header_contents {
+  background-position: center;
+  background-size: cover;
+  background: #000;
 }

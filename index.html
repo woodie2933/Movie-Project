@@ -3,12 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <!--fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/c809baf69a.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--js-->
     <script type="module" defer src="./moviedata.js"></script>
     <script src="./script.js"></script>
+    <!--css-->
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./reset.css" />
     <title>Document</title>
   </head>
   <body>
-    <div id="movies"></div>
+    <div class="search">
+      <input
+        class="search_box"
+        type="text"
+        name=""
+        placeholder="영화를 찾아보세요"
+      />
+      <button class="search_btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <button class="search_btn">
+        <i class="fa-solid fa-bookmark"></i>
+      </button>
+    </div>
+    <div class="container">
+      <div class="header">
+        <div class="header_contents">
+          <div class="header_bottom">
+            <img src="./img/logo.png" alt="logo" />
+            <p>절찬 스트리밍</p>
+            <div class="header_btn">
+              <button>스탠다드 플랜</button>
+              <button>프리미엄 플랜</button>
+            </div>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
+              dicta perspiciatis fugit voluptate, sequi animi dignissimos fuga
+              natus debitis eum nesciunt, pariatur molestias assumenda? Incidunt
+              ducimus tempora praesentium quasi aspernatur!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="recent"></div>
+      <div class="banner"></div>
+      <div id="top_rated"></div>
+      <footer></footer>
+    </div>
   </body>
 </html>
