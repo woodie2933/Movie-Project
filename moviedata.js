@@ -1,7 +1,12 @@
 import env from "./env.js";
 
+const topRated =
+  "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1";
+const popular =
+  "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1";
+
 // Movie API
-const fetchMovies = async function () {
+const fetchMovies = async function (url) {
   const options = {
     method: "GET",
     headers: {
@@ -11,44 +16,44 @@ const fetchMovies = async function () {
     },
   };
 
-  const url =
-    "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1";
-
   try {
-    const topRatedRes = await fetch(url, options);
-    const topRatedJson = await topRatedRes.json();
-    const topRatedData = topRatedJson.results;
-
-    renderMovie(topRatedData);
+    const movieRes = await fetch(url, options);
+    const movieJson = await movieRes.json();
+    return movieJson.results;
   } catch (err) {
     console.error("error", error);
   }
 };
 
-const renderMovie = function (data) {
-  const movie = document.getElementById("top_rated");
+// 랜덤헤더
+const randomMovie = async function () {
+  const data = await fetchMovies(popular);
+
+  const headerImg = document.querySelector(".header_contents");
+  const randomIndex = Math.floor(Math.random() * 20);
+  const img = data[randomIndex].backdrop_path;
+
+  headerImg.style.backgroundImage = `url('https://image.tmdb.org/t/p/original/${img}')`;
+
+  console.log(data);
+};
+
+randomMovie();
+
+// 영화카드
+const topRatedMovie = async function () {
+  const data = await fetchMovies(topRated);
+
+  const topMovie = document.getElementById("top_rated");
   data.forEach((item) => {
-    movie.innerHTML += `
+    topMovie.innerHTML += `
       <div class = "card">
-        <h3>${item.title}</h3>
-        <p>${item.vote_average}</p>
-        <img class="img" src ='https://image.tmdb.org/t/p/w300/${item.backdrop_path}'>
+        <p class="card_title">${item.title}</p>
+        <p class="card_star">${item.vote_average}</p>
+        <img class="card_img" src ='https://image.tmdb.org/t/p/w780/${item.backdrop_path}'>
       </div>`;
   });
   console.log(data);
 };
 
-fetchMovies();
-
-// random
-const randomMovie = function (data) {
-  const randomIndex = Math.random(Math.floor() * 20);
-  const headerImg = document.querySelector(".header_contents");
-  const img = data[randomIndex].backdrop_path;
-
-  headerImg.style.backgroundImage = `url('https://image.tmdb.org/t/p/w300/${img}')`;
-
-  console.log(data);
-};
-
-randomMovie(fetchMovies());
+topRatedMovie(fetchMovies(topRated));

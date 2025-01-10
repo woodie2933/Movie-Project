@@ -1,18 +1,41 @@
-#top_rated {
+@import url(./reset.css);
+body {
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  color: #fff;
+}
+body .search {
+  width: 100%;
+  height: 40px;
+  position: fixed;
+}
+body .container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .container .header {
+  width: 100%;
+  height: 600px;
+}
+body .container .header .header_contents {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body .container .header .header_contents .header_inner {
+  width: 100%;
+  height: 100%;
+}
+body .container .top_rated_movie {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
   gap: 80px 40px;
   justify-content: center;
   justify-items: start;
-}
-
-.card {
-  width: 200px;
-  height: 200px;
-}
-
-.header_contents {
-  background-position: center;
-  background-size: cover;
-  background: #000;
-}
+}/*# sourceMappingURL=style.css.map */
