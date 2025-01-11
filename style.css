@@ -5,10 +5,56 @@ body {
   background: #000;
   color: #fff;
 }
+body::-webkit-scrollbar {
+  display: none;
+}
 body .search {
   width: 100%;
-  height: 40px;
+  height: 100px;
   position: fixed;
+}
+body .search .search_bar {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding-right: 40px;
+}
+body .search .search_bar .search_box {
+  width: 280px;
+  height: 40px;
+  background: #000000;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  padding-left: 15px;
+  opacity: 0.5;
+  outline: none;
+  transition: all 0.3s;
+}
+body .search .search_bar .search_box::-moz-placeholder {
+  color: #fff;
+}
+body .search .search_bar .search_box::placeholder {
+  color: #fff;
+}
+body .search .search_bar .search_box:focus {
+  background: #d3d3d3;
+  border: 2px solid #ff4f4f;
+}
+body .search .search_bar .bookmark_btn {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  border: none;
+  background: transparent;
+  color: #ff5151;
+  font-size: 35px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+body .search .search_bar .bookmark_btn:hover {
+  color: #dadada;
 }
 body .container {
   width: 100%;
@@ -19,7 +65,7 @@ body .container {
 }
 body .container .header {
   width: 100%;
-  height: 600px;
+  height: 700px;
 }
 body .container .header .header_contents {
   width: 100%;
@@ -28,14 +74,102 @@ body .container .header .header_contents {
   background-size: cover;
   background-repeat: no-repeat;
 }
-body .container .header .header_contents .header_inner {
+body .container .header .header_contents .gradient {
   width: 100%;
   height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
 }
-body .container .top_rated_movie {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
-  gap: 80px 40px;
+body .container .header .header_contents .gradient .header_inner {
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  background: none;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  justify-items: start;
+  align-items: start;
+}
+body .container .header .header_contents .gradient .header_inner img {
+  width: 300px;
+  margin-left: -50px;
+}
+body .container .header .header_contents .gradient .header_inner h1 {
+  margin-top: -30px;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+body .container .header .header_contents .gradient .header_inner .header_btn {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding-left: 5px;
+  gap: 20px;
+}
+body .container .header .header_contents .gradient .header_inner .header_btn button {
+  width: 280px;
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background: #ff5151;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+body .container .header .header_contents .gradient .header_inner .header_btn button:hover {
+  background: #ee3232;
+}
+body .container .header .header_contents .gradient .header_inner p {
+  line-height: 1.7rem;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+body .container .recent_movie .tag {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+body .container .recent_movie #recent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  padding: 0 40px;
+}
+body .container .recent_movie #recent .recent_card {
+  width: 300px;
+  height: 215px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  background: #191919;
+  cursor: pointer;
+}
+body .container .recent_movie #recent .recent_card .recent_card_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+body .container .recent_movie #recent .recent_card .recent_card_img:hover {
+  opacity: 0.6;
+}
+body .container .recent_movie #recent .recent_card .recent_card_desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  padding: 0 10px;
+}
+body .container .recent_movie #recent .recent_card .recent_card_desc .recent_card_title {
+  font-size: 15px;
+  font-weight: 500;
 }/*# sourceMappingURL=style.css.map */

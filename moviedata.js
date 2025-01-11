@@ -40,17 +40,37 @@ const randomMovie = async function () {
 
 randomMovie();
 
-// 영화카드
+// toprated 영화카드
+const recentMovie = async function () {
+  const data = await fetchMovies(popular);
+
+  const nowMovie = document.getElementById("recent");
+  data.forEach((item) => {
+    nowMovie.innerHTML += `
+      <div class = "recent_card">
+        <img class= "recent_card_img" src ='https://image.tmdb.org/t/p/w300/${item.backdrop_path}'>
+        <div class = "recent_card_desc">
+          <p class= "recent_card_title">${item.title}</p>
+          <p class= "recent_card_star">${item.vote_average}</p>
+        </div>
+      </div>`;
+  });
+  console.log(data);
+};
+
+recentMovie(fetchMovies(popular));
+
+// toprated 영화카드
 const topRatedMovie = async function () {
   const data = await fetchMovies(topRated);
 
   const topMovie = document.getElementById("top_rated");
   data.forEach((item) => {
     topMovie.innerHTML += `
-      <div class = "card">
-        <p class="card_title">${item.title}</p>
-        <p class="card_star">${item.vote_average}</p>
-        <img class="card_img" src ='https://image.tmdb.org/t/p/w780/${item.backdrop_path}'>
+      <div class = "toprated_card">
+        <img class="toprated_card_img" src ='https://image.tmdb.org/t/p/w300/${item.backdrop_path}'>
+        <p class="toprated_card_title">${item.title}</p>
+        <p class="toprated_card_star">${item.vote_average}</p>
       </div>`;
   });
   console.log(data);
