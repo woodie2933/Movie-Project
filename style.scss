@@ -20,7 +20,7 @@ body {
       align-items: center;
       padding-right: 40px;
       .search_box {
-        width: 280px;
+        width: 300px;
         height: 40px;
         background: #000000;
         border: 2px solid #fff;
@@ -144,8 +144,8 @@ body {
         gap: 60px;
         padding: 0 40px;
         .recent_card {
-          width: 300px;
-          height: 215px;
+          width: 350px;
+          height: 240px;
           display: flex;
           flex-direction: column;
           border-radius: 10px;
@@ -168,11 +168,126 @@ body {
             margin: 8px 0;
             padding: 0 10px;
             .recent_card_title {
+              color: #dadada;
+              letter-spacing: 1px;
+              font-size: 15px;
+              font-weight: bold;
+            }
+            .recent_card_star {
+              color: #dadada;
+              letter-spacing: 1px;
+              font-size: 14px;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    .banner {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: top;
+      margin-top: 100px;
+      margin-bottom: 60px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      p {
+        margin-left: 100px;
+        font-size: 35px;
+        font-weight: bold;
+      }
+      .upcoming_btn {
+        width: 200px;
+        height: 30px;
+        border: none;
+        border-radius: 15px;
+        background: #ff5151;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-top: 15px;
+        margin-left: 100px;
+        transition: all 0.3s;
+        cursor: pointer;
+        &:hover {
+          background: #595959;
+        }
+      }
+    }
+    .top_rated_movie {
+      .tag {
+        width: 100%;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      #top_rated {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+        padding: 0 40px;
+        .toprated_card {
+          width: 350px;
+          height: 240px;
+          display: flex;
+          flex-direction: column;
+          border-radius: 10px;
+          background: #191919;
+          cursor: pointer;
+          .toprated_card_img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            transition: all 0.3s;
+            &:hover {
+              opacity: 0.6;
+            }
+          }
+          .toprated_card_desc {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            padding: 0 10px;
+            .toprated_card_title {
               font-size: 15px;
               font-weight: 500;
             }
           }
         }
+      }
+    }
+    footer {
+      width: 100%;
+      height: 300px;
+      background: #111111;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 100px;
+      img {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: -20px;
+        margin-bottom: -10px;
+        opacity: 0.6;
+      }
+      p {
+        color: #6d6d6d;
+        font-size: 15px;
+        margin-top: 7px;
       }
     }
   }
