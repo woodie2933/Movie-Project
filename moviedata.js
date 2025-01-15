@@ -112,7 +112,7 @@ const showModal = (data, modalSelector, cards) => {
       const modalVote = movie.vote_average.toFixed(1);
 
       document.body.style.overflow = "hidden";
-      modal.classList.remove("hide");
+      modal.style.display = "flex";
       modal.innerHTML = `
         <div class="modal_wrap" style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')">
           <i id="close_modal" class="fa-solid fa-xmark"></i>
@@ -128,9 +128,9 @@ const showModal = (data, modalSelector, cards) => {
 
       // 모달창 닫기
       document.querySelector("#close_modal").addEventListener("click", () => {
-        modal.classList.add("hide");
         document.body.style.overflow = "auto";
         modal.innerHTML = "";
+        modal.style.display = "none";
       });
     });
   }

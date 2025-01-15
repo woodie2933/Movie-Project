@@ -293,11 +293,9 @@ body .container footer p {
   font-size: 15px;
   margin-top: 7px;
 }
-body .hide {
-  display: none;
-}
 body #recent_modal,
 body #top_rated_modal {
+  display: none;
   width: 100%;
   height: 100%;
   top: 0;
