@@ -27,6 +27,8 @@ const fetchMovies = async function (url) {
   }
 };
 
+// 검색창
+
 // 랜덤헤더
 const randomMovie = async function () {
   const data = await fetchMovies(popular);
@@ -60,47 +62,6 @@ const recentMovie = async function () {
 };
 
 recentMovie();
-
-// recent 모달창
-const recentModal = async function () {
-  const data = await fetchMovies(popular);
-
-  const nowModal = document.querySelector("#recent_modal");
-
-  for (let i = 0; i < 20; i++) {
-    const card = document.querySelector(`#card_${i}`);
-    card.addEventListener("click", () => {
-      const top = data[i];
-      const nowModalVote = top.vote_average.toFixed(1);
-      const img = top.backdrop_path;
-
-      document.body.style.overflow = "hidden";
-      nowModal.classList.remove("hide");
-      nowModal.innerHTML += `
-        <div class = "top_rated_modal_wrap" style = "background-image: url('https://image.tmdb.org/t/p/original/${img}')" >
-          <i id = "close_modal2" class="fa-solid fa-xmark"></i>
-          <div class = "top_rated_modal_desc">
-            <p class="top_rated_modal_star">RATING${nowModalVote}/10</p>
-            <p class="top_rated_modal_genre">${top.genre_ids}</p>
-            <p class="top_rated_modal_title">${top.title}</p>
-            <p class="top_rated_modal_original_title">${top.original_title}</p>
-            <p class="top_rated_modal_date">${top.release_date}</p>
-            <p class="top_rated_modal_summary">${top.overview}</p>
-          </div>
-        </div>`;
-
-      // 모달 닫기
-      const closeModal = document.querySelector("#close_modal2");
-      closeModal.addEventListener("click", () => {
-        nowModal.classList.add("hide");
-        document.body.style.overflow = "auto";
-        nowModal.innerHTML = "";
-      });
-    });
-  }
-};
-
-recentModal();
 
 // 랜덤배너
 const randomBanner = async function () {
@@ -138,43 +99,52 @@ const topRatedMovie = async function () {
 
 topRatedMovie();
 
-// topRated 모달창
-const topRatedModal = async function () {
-  const data = await fetchMovies(topRated);
-
-  const topModal = document.querySelector("#top_rated_modal");
+// Modal
+const showModal = (data, modalSelector, cards) => {
+  const modal = document.querySelector(modalSelector);
 
   for (let i = 0; i < 20; i++) {
-    const card2 = document.querySelector(`#card2_${i}`);
-    card2.addEventListener("click", () => {
-      const top = data[i];
-      const topModalVote = top.vote_average.toFixed(1);
-      const img = top.backdrop_path;
+    const card = document.querySelector(`#${cards}_${i}`);
+    if (!card) continue;
+
+    card.addEventListener("click", () => {
+      const movie = data[i];
+      const modalVote = movie.vote_average.toFixed(1);
 
       document.body.style.overflow = "hidden";
-      topModal.classList.remove("hide");
-      topModal.innerHTML += `
-        <div class = "top_rated_modal_wrap" style = "background-image: url('https://image.tmdb.org/t/p/original/${img}')" >
-          <i id = "close_modal2" class="fa-solid fa-xmark"></i>
-          <div class = "top_rated_modal_desc">
-            <p class="top_rated_modal_star">RATING${topModalVote}/10</p>
-            <p class="top_rated_modal_genre">${top.genre_ids}</p>
-            <p class="top_rated_modal_title">${top.title}</p>
-            <p class="top_rated_modal_original_title">${top.original_title}</p>
-            <p class="top_rated_modal_date">${top.release_date}</p>
-            <p class="top_rated_modal_summary">${top.overview}</p>
+      modal.classList.remove("hide");
+      modal.innerHTML = `
+        <div class="modal_wrap" style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')">
+          <i id="close_modal" class="fa-solid fa-xmark"></i>
+          <div class="modal_desc">
+            <p class="modal_star">RATING ${modalVote}/10</p>
+            <p class="modal_genre">${movie.genre_ids}</p>
+            <p class="modal_title">${movie.title}</p>
+            <p class="modal_original_title">${movie.original_title}</p>
+            <p class="modal_date">${movie.release_date}</p>
+            <p class="modal_summary">${movie.overview}</p>
           </div>
         </div>`;
 
-      // 모달 닫기
-      const closeModal = document.querySelector("#close_modal2");
-      closeModal.addEventListener("click", () => {
-        topModal.classList.add("hide");
+      // 모달창 닫기
+      document.querySelector("#close_modal").addEventListener("click", () => {
+        modal.classList.add("hide");
         document.body.style.overflow = "auto";
-        topModal.innerHTML = "";
+        modal.innerHTML = "";
       });
     });
   }
 };
 
+const recentModal = async () => {
+  const data = await fetchMovies(popular);
+  showModal(data, "#recent_modal", "card");
+};
+
+const topRatedModal = async () => {
+  const data = await fetchMovies(topRated);
+  showModal(data, "#top_rated_modal", "card2");
+};
+
+recentModal();
 topRatedModal();

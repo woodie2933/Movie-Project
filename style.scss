@@ -301,25 +301,7 @@ body {
   .hide {
     display: none;
   }
-  #recent_modal {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    position: fixed;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    .top_rated_modal_wrap {
-      width: 1000px;
-      height: 700px;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-  }
+  #recent_modal,
   #top_rated_modal {
     width: 100%;
     height: 100%;
@@ -330,13 +312,60 @@ body {
     position: fixed;
     justify-content: center;
     align-items: center;
-    z-index: 2;
-    .top_rated_modal_wrap {
-      width: 1000px;
+    .modal_wrap {
+      width: 1300px;
       height: 700px;
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+      border-radius: 30px;
+      display: flex;
+      flex-direction: column;
+      #close_modal {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        font-size: 25px;
+        cursor: pointer;
+      }
+      .modal_desc {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        padding-left: 40px;
+        padding-bottom: 50px;
+        .modal_star {
+          font-family: "Numans", serif;
+          margin-bottom: 100px;
+          font-weight: bold;
+          letter-spacing: 1px;
+        }
+        .modal_genre {
+          font-weight: bold;
+        }
+        .modal_title {
+          font-family: "Noto Sans KR", serif;
+          margin: 20px 0 5px 0;
+          font-size: 40px;
+          font-weight: bold;
+        }
+        .modal_original_title {
+          font-family: "Numans", serif;
+          margin-bottom: 5px;
+          font-size: 27px;
+          font-weight: bold;
+        }
+        .modal_date {
+          font-family: "Numans", serif;
+          margin-bottom: 25px;
+          letter-spacing: 1px;
+        }
+        .modal_summary {
+          font-family: "Noto Sans KR", serif;
+        }
+      }
     }
   }
 }
