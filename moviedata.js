@@ -24,10 +24,52 @@ const fetchMovies = async function (url) {
     return movieJson.results;
   } catch (err) {
     console.error("error", error);
+    return [];
   }
 };
 
 // 검색창
+const searchBox = document.querySelector(".search_box");
+const searchResult = document.querySelector(".search_result");
+
+searchBox.addEventListener("input", async (e) => {
+  const searchInput = searchBox.value.trim();
+
+  if (!searchInput) {
+    searchResult.style.display = "none";
+    return;
+  }
+
+  const encodedText = encodeURIComponent(searchInput);
+  const data = await fetchMovies(
+    `https://api.themoviedb.org/3/search/movie?query=${encodedText}&include_adult=false&language=ko-KR&page=1`
+  );
+
+  const filtered = data.filter((result) => result.title.includes(searchInput));
+
+  searchResult.innerHTML = "";
+  searchResult.style.display = "grid";
+
+  filtered.forEach((item, index) => {
+    const resultVote = item.vote_average.toFixed(1);
+
+    const searchItem = document.createElement("div");
+    searchItem.classList.add("result_card");
+    searchItem.setAttribute("id", `card3_${index}`);
+
+    searchItem.innerHTML = `
+      <img class="result_card_img" src='https://image.tmdb.org/t/p/w780/${item.backdrop_path}'>
+      <div class="result_card_desc">
+        <p class="result_card_title">${item.title}</p>
+        <p class="result_card_star">⭐ ${resultVote}</p>
+      </div>
+      `;
+
+    searchResult.append(searchItem);
+  });
+});
+
+// 검색결과
 
 // 랜덤헤더
 const randomMovie = async function () {
@@ -72,8 +114,6 @@ const randomBanner = async function () {
   const img = data[randomIndex].backdrop_path;
 
   headerImg.style.backgroundImage = `url('https://image.tmdb.org/t/p/original/${img}')`;
-
-  console.log(data);
 };
 
 randomBanner();
@@ -114,17 +154,17 @@ const showModal = (data, modalSelector, cards) => {
       document.body.style.overflow = "hidden";
       modal.style.display = "flex";
       modal.innerHTML = `
-        <div class="modal_wrap" style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')">
-          <i id="close_modal" class="fa-solid fa-xmark"></i>
-          <div class="modal_desc">
-            <p class="modal_star">RATING ${modalVote}/10</p>
-            <p class="modal_genre">${movie.genre_ids}</p>
-            <p class="modal_title">${movie.title}</p>
-            <p class="modal_original_title">${movie.original_title}</p>
-            <p class="modal_date">${movie.release_date}</p>
-            <p class="modal_summary">${movie.overview}</p>
-          </div>
-        </div>`;
+      <div class="modal_wrap" style="background-image: url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')">
+        <i id="close_modal" class="fa-solid fa-xmark"></i>
+        <div class="modal_desc">
+          <p class="modal_star">RATING <span style = "font-size: 20px; color: #FFEB46">${modalVote}</span> / 10</p>
+          <p class="modal_genre">${movie.genre_ids}</p>
+          <p class="modal_title">${movie.title}</p>
+          <p class="modal_original_title">${movie.original_title}</p>
+          <p class="modal_date">${movie.release_date}</p>
+          <p class="modal_summary">${movie.overview}</p>
+        </div>
+      </div>`;
 
       // 모달창 닫기
       document.querySelector("#close_modal").addEventListener("click", () => {
